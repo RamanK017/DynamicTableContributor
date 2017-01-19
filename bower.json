@@ -1,0 +1,24 @@
+{
+  "name": "smarttable",
+  "authors": [
+    "Sinha0542 <geeksinha952@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "^1.1.1",
+    "angular-route": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "angularUtils-pagination": "angular-utils-pagination#^0.11.1",
+    "angular-material-data-table": "^0.10.10"
+  }
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-App="smartTable">
+
+<head>
+    <link href="bower_components/angular-material/angular-material.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- style sheet -->
+    <link href="bower_components/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css" />
+    <!-- module -->
+    <title>Smart Table</title>
+</head>
+
+<body ng-controller="tableCtrl as mainctrl">
+
+    <datas-table objectdata="mainctrl.desserts"></datas-table>
+
+
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <script type="text/javascript" src="module.js"></script>
+    <script type="text/javascript" src="factory/service.js"></script>
+    <script type="text/javascript" src="components/smart-table/component.js"></script>
+</body>
+
+</html>
