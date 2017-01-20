@@ -1,20 +1,18 @@
 <div class="md-whiteframe-8dp">
     <md-toolbar class="md-table-toolbar md-accent" ng-if="!customTableCtrl. options.rowSelection">
         <div layout="row">
-            <span>Nutrition</span>
+            <h3><span>Custom Data Table</span></h3>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="customTableCtrl.serchopentab()">
                 <md-icon>filter_list</md-icon>
             </md-button>
-            <md-button class="md-icon-button">
-                <md-icon>more_vert</md-icon>
-            </md-button>
+            <div ng-transclude="topCorner" layout-align="end end"></div>
         </div>
     </md-toolbar>
     <md-toolbar class="md-table-toolbar alternate" ng-if="customTableCtrl.options.rowSelection">
         <div class="md-toolbar-tools">
             <span flex></span>
-            <md-button class="md-icon-button" ng-click="customTableCtrl.userdelete()">
+            <md-button class="md-icon-button" ng-click="customTableCtrl.seclectedRowId()">
                 <md-icon>delete</md-icon>
             </md-button>
         </div>
@@ -25,40 +23,38 @@
                 <label>Search text</label>
                 <input type="text" ng-model="customTableCtrl.searchtext">
             </md-input-container>
-            <md-button class="md-raised md-warn" ng-click="customTableCtrl.searchtab({'searchtext':customTableCtrl.searchtext})">
-                Search
+            <md-button class="md-raised md-fab md-mini" ng-click="customTableCtrl.searchinput({'searchtext':customTableCtrl.searchtext})">
+                <md-icon>search</md-icon>
+            </md-button>
+            <md-button class="md-raised md-fab md-mini" ng-click="customTableCtrl.options.Search=false">
+                <md-icon>close</md-icon>
             </md-button>
         </div>
     </md-toolbar>
     <md-table-container>
-        <table data-md-table data-md-row-select="customTableCtrl.options.rowSelection" data-ng-model="customTableCtrl.selected">
+        <table data-md-table data-md-row-select="customTableCtrl.options.rowSelection" data-ng-model="customTableCtrl.selected" layout-wrap>
             <thead md-head>
                 <tr md-row>
-                    <th>Select</th>
-                    <th md-column><span>Dessert (100g serving)</span></th>
-                    <th md-column><span>Type</span></th>
-                    <th md-column data-md-numeric><span>Calories</span></th>
-                    <th md-column data-md-numeric><span>Fat (g)</span></th>
-                    <th md-column data-md-numeric><span>Protein (g)</span></th>
-                    <th md-column data-md-numeric data-hide-sm><span>Iron (%)</span></th>
-                    <th md-column>
-                        <md-icon>comments</md-icon>
-                        <span>Comments</span>
-                    </th>
-                </tr>
+                    <tr md-row ng-repeat="x in customTableCtrl.tabledata" ng-if="$first">
+                        <th></th>
+                        <th md-column ng-repeat="(key,value) in x">
+                            <md-button ng-click="customTableCtrl.headervalue(key)"><span>{{key}}</span></md-button>
+                        </th>
+                        <th md-column>
+                            <md-icon>comments</md-icon>
+                            <span>Comments</span>
+                        </th>
+                    </tr>
             </thead>
             <tbody md-body>
-                <tr md-row ng-repeat="x in customTableCtrl.userdata">
+                <tr md-row ng-repeat="x in customTableCtrl.tabledata">
                     <td>
-                        <md-checkbox ng-change="customTableCtrl.callerfun(x)" ng-model="customTableCtrl.options.rowSelection"></md-checkbox>
+                        <md-checkbox ng-change="customTableCtrl.tablerow(x)" ng-model="customTableCtrl.options.rowSelection"></md-checkbox>
                     </td>
-
-                    <td md-cell>{{x.name}}</td>
-                    <td md-cell>{{x.type}}</td>
-                    <td md-cell>{{x.calories.value}}</td>
-                    <td md-cell>{{x.fat.value | number: 2}}</td>
-                    <td md-cell>{{x.protein.value | number: 2}}</td>
-                    <td md-cell hide-sm>{{x.iron.value}}%</td>
+                    <td md-cell ng-repeat="(key,value) in x">{{value}}</td>
+                    <td>
+                        <div ng-transclude="rowCorner" layout-align="end end"></div>
+                    </td>
                 </tr>
             </tbody>
         </table>

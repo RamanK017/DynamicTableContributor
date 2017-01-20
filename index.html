@@ -2,6 +2,7 @@
 <html ng-App="ngTable">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="bower_components/angular-material/angular-material.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- style sheet -->
@@ -10,11 +11,16 @@
     <title>Dynamic Table</title>
 </head>
 
-<body layout="column" ng-controller="ngTableCtrl as parentCtrl">
-    
-    <custom-table userdata="parentCtrl.desserts" userinformation="parentCtrl.getUserData(pageno,pagelimit)" pagecount="{{parentCtrl.pageCount}}" searchtab="parentCtrl.searchtab(searchtext)" deleteid="parentCtrl.deleteuser(id)"></custom-table>
-
-
+<body ng-controller="ngTableCtrl as parentCtrl">
+   <!-- custom table is the component -->
+    <custom-table tabledata="parentCtrl.tabledata" tableinformation="parentCtrl.tableinformation(pageno,pagelimit)" pagecount="{{parentCtrl.pageCount}}" searchinput="parentCtrl.searchinput(searchtext)" tablerowid="parentCtrl.tablerowid(id)" tableheader="parentCtrl.tableheader(key)">
+        <top-corner>
+            <md-button class="md-raised md-primary">TopCorner</md-button>
+        </top-corner>
+        <row-corner>
+            <md-button class="md-raised md-hue">RowCorner</md-button>
+        </row-corner>
+    </custom-table>
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
