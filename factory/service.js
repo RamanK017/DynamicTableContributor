@@ -1,21 +1,22 @@
-angular.module('smartTable').factory('service', function($http, $q) //declaration of factory
+angular.module('ngTable').factory('tableDataService', function($http, $q) //declaration of factory
     {
         var servicectrl = this;
-        var factory = {};
-        var deferred = $q.defer();
-        factory.servicedata = function() {
-
-            $http.get('http://localhost:3000/data').then(function(desserts) {
-
-                servicectrl.desserts = desserts.data;
-                console.log("in service", servicectrl.desserts);
-                deferred.resolve(desserts);
+        var factoryobj = {};
+        
+        factoryobj.servicedata = function(pageno) {
+            var deferred = $q.defer();
+            $http.get("http://localhost:3000/data?_start="+(pageno*3)+"&_end="+((pageno*3)+3)).then(function(response) {
+                servicectrl.response = response.data;
+                var pageCount = response.headers('X-Total-Count');
+                response["pageCount"] = pageCount;
+                console.log("in service", servicectrl.response);
+                deferred.resolve(response);
 
             });
-            return (deferred.promise);
+            return deferred.promise;
 
         };
 
-        return factory;
+        return factoryobj;
 
     });

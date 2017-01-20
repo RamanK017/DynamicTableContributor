@@ -12,6 +12,7 @@
       "calcium": { "value": 14.0 },
       "iron": { "value": 1.0 },
       "comment": "Not as good as the real thing."
+      
     }, {
       "name": "Ice cream sandwich",
       "type": "Ice cream",
@@ -92,6 +93,111 @@
       "sodium": { "value": 54.0 },
       "calcium": { "value": 12.0 },
       "iron": { "value": 6.0 }
+    },
+    {
+      "name": "Lenevo",
+      "type": "Ice cream",
+      "calories": { "value": 159.0 },
+      "fat": { "value": 6.0 },
+      "carbs": { "value": 24.0 },
+      "protein": { "value": 4.0 },
+      "sodium": { "value": 87.0 },
+      "calcium": { "value": 14.0 },
+      "iron": { "value": 1.0 },
+      "comment": "Not as good as the real thing."
+      
+    },
+    {
+      "name": "Moto",
+      "type": "Ice cream",
+      "calories": { "value": 159.0 },
+      "fat": { "value": 6.0 },
+      "carbs": { "value": 24.0 },
+      "protein": { "value": 4.0 },
+      "sodium": { "value": 87.0 },
+      "calcium": { "value": 14.0 },
+      "iron": { "value": 1.0 },
+      "comment": "Not as good as the real thing."
+      
+    },
+    {
+      "name": "Samsung",
+      "type": "Ice cream",
+      "calories": { "value": 159.0 },
+      "fat": { "value": 6.0 },
+      "carbs": { "value": 24.0 },
+      "protein": { "value": 4.0 },
+      "sodium": { "value": 87.0 },
+      "calcium": { "value": 14.0 },
+      "iron": { "value": 1.0 },
+      "comment": "Not as good as the real thing."
+      
+    },
+    {
+      "name": "Nokia",
+      "type": "Ice cream",
+      "calories": { "value": 159.0 },
+      "fat": { "value": 6.0 },
+      "carbs": { "value": 24.0 },
+      "protein": { "value": 4.0 },
+      "sodium": { "value": 87.0 },
+      "calcium": { "value": 14.0 },
+      "iron": { "value": 1.0 },
+      "comment": "Not as good as the real thing."
+      
+    },
+    {
+      "name": "Apple",
+      "type": "Ice cream",
+      "calories": { "value": 159.0 },
+      "fat": { "value": 6.0 },
+      "carbs": { "value": 24.0 },
+      "protein": { "value": 4.0 },
+      "sodium": { "value": 87.0 },
+      "calcium": { "value": 14.0 },
+      "iron": { "value": 1.0 },
+      "comment": "Not as good as the real thing."
+      
+    },
+    {
+      "name": "HTC",
+      "type": "Ice cream",
+      "calories": { "value": 159.0 },
+      "fat": { "value": 6.0 },
+      "carbs": { "value": 24.0 },
+      "protein": { "value": 4.0 },
+      "sodium": { "value": 87.0 },
+      "calcium": { "value": 14.0 },
+      "iron": { "value": 1.0 },
+      "comment": "Not as good as the real thing."
+      
+    },
+    {
+      "name": "ZenPhone",
+      "type": "Ice cream",
+      "calories": { "value": 159.0 },
+      "fat": { "value": 6.0 },
+      "carbs": { "value": 24.0 },
+      "protein": { "value": 4.0 },
+      "sodium": { "value": 87.0 },
+      "calcium": { "value": 14.0 },
+      "iron": { "value": 1.0 },
+      "comment": "Not as good as the real thing."
+      
+    },
+    {
+      "name": "Potasium",
+      "type": "Ice cream",
+      "calories": { "value": 159.0 },
+      "fat": { "value": 6.0 },
+      "carbs": { "value": 24.0 },
+      "protein": { "value": 4.0 },
+      "sodium": { "value": 87.0 },
+      "calcium": { "value": 14.0 },
+      "iron": { "value": 1.0 },
+      "comment": "Not as good as the real thing."
+      
     }
+
   ]
 }

@@ -1,54 +1,62 @@
-<md-toolbar class="md-table-toolbar md-default" ng-show="!options.rowSelection || !selected.length">
+<div class="md-whiteframe-8dp">
+<md-toolbar class="md-table-toolbar md-primary" ng-if="!customTableCtrl. options.rowSelection">
+    <div layout="row">
+        <span>Nutrition</span>
+        <span flex></span>
+        <md-button class="md-icon-button">
+            <md-icon>filter_list</md-icon>
+        </md-button>
+        <md-button class="md-icon-button">
+            <md-icon>more_vert</md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<md-toolbar class="md-table-toolbar alternate" ng-if="customTableCtrl.options.rowSelection">
   <div class="md-toolbar-tools">
-    <span>Nutrition</span>
+    <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</span>
     <span flex></span>
-    <md-button class="md-icon-button" ng-click="loadStuff()">
-      <md-icon>refresh</md-icon>
-    </md-button>
     <md-button class="md-icon-button">
-      <md-icon>filter_list</md-icon>
-    </md-button>
-    <md-button class="md-icon-button">
-      <md-icon>more_vert</md-icon>
+      <md-icon>delete</md-icon>
     </md-button>
   </div>
 </md-toolbar>
-<md-table-container>
-<table data-md-table data-md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" data-ng-model="selected" md-progress="promise">
-<thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-on-reorder="onReorder">
-      <tr md-row>
-        <th md-column md:order:by="name"><span>Dessert (100g serving)</span></th>
-        <th md-column md:order:by="type"><span>Type</span></th>
-        <th md-column data-md-numeric data-md-order-by="calories.value" data-md-desc><span>Calories</span></th>
-        <th md-column data-md-numeric data-md-order-by="fat.value"><span>Fat (g)</span></th>
-       
-        <th md-column data-md-numeric data-md-order-by="protein.value"><span>Protein (g)</span></th>
-        
-        <th md-column data-md-numeric data-md-order-by="iron.value" data-hide-sm><span>Iron (%)</span></th>
-        <th md-column data-md-order-by="comment">
-          <md-icon>comments</md-icon>
-          <span>Comments</span>
-        </th>
-      </tr>
-    </thead>
-    <tbody md-body>
 
-    <tr md-row data-ng-repeat="x in compCtrl.objectdata">
-    <td md-cell>{{x.name}}</td>
-     <td md-cell>
-        {{x.type}}
-        </td>
-        <td md-cell>{{x.calories.value}}</td>
-        <td md-cell>{{x.fat.value | number: 2}}</td>
-        <!-- <td md-cell>{{dessert.carbs.value}}</td> -->
-        <td md-cell>{{x.protein.value | number: 2}}</td>
-        <!-- <td md-cell>{{dessert.sodium.value}}</td> -->
-        <!-- <td md-cell>{{dessert.calcium.value}}%</td> -->
-        <td md-cell hide-sm>{{x.iron.value}}%</td>
-        
-      
-    </tr>
-    </tbody>
-</table>
+<md-table-container>
+    <table data-md-table data-md-row-select="customTableCtrl.options.rowSelection"  data-ng-model=" customTableCtrl.selected">
+        <thead  md-head>
+            <tr md-row>
+            <th>Select</th>
+                <th md-column md:order:by="name"><span>Dessert (100g serving)</span></th>
+                <th md-column md:order:by="type"><span>Type</span></th>
+                <th md-column data-md-numeric data-md-order-by="calories.value" data-md-desc><span>Calories</span></th>
+                <th md-column data-md-numeric data-md-order-by="fat.value"><span>Fat (g)</span></th>
+                <th md-column data-md-numeric data-md-order-by="protein.value"><span>Protein (g)</span></th>
+                <th md-column data-md-numeric data-md-order-by="iron.value" data-hide-sm><span>Iron (%)</span></th>
+                <th md-column data-md-order-by="comment">
+                    <md-icon>comments</md-icon>
+                    <span>Comments</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody md-body>
+
+
+            <tr md-row ng-repeat="x in customTableCtrl.userdata" data-md-on-select="customTableCtrl.log">
+          <td md-cell><md-checkbox ng-model="customTableCtrl.options.rowSelection"></md-checkbox></td>
+                <td md-cell>{{x.name}}</td>
+                <td md-cell>{{x.type}}</td>
+                <td md-cell>{{x.calories.value}}</td>
+                <td md-cell>{{x.fat.value | number: 2}}</td>
+                <td md-cell>{{x.protein.value | number: 2}}</td>
+                <td md-cell hide-sm>{{x.iron.value}}%</td>
+            </tr>
+        </tbody>
+    </table>
 </md-table-container>
+
+<md-table-pagination md-limit="customTableCtrl.query.limit" md-limit-options="customTableCtrl.limitOptions"  md-page="customTableCtrl.query.page" md-total="{{customTableCtrl.pagecount}}" md-on-paginate="customTableCtrl.onPaginate"  md-page-select="customTableCtrl.options.pageSelect"></md-table-pagination>
+
+</div>
+<br>
 
