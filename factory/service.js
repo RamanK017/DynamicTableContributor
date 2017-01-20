@@ -3,9 +3,9 @@ angular.module('ngTable').factory('tableDataService', function($http, $q) //decl
         var servicectrl = this;
         var factoryobj = {};
         
-        factoryobj.servicedata = function(pageno) {
+        factoryobj.servicedata = function(pageno,pagelimit) {
             var deferred = $q.defer();
-            $http.get("http://localhost:3000/data?_start="+(pageno*3)+"&_end="+((pageno*3)+3)).then(function(response) {
+            $http.get("http://localhost:3000/data?_start="+(pageno*pagelimit)+"&_end="+((pageno*pagelimit)+pagelimit)).then(function(response) {
                 servicectrl.response = response.data;
                 var pageCount = response.headers('X-Total-Count');
                 response["pageCount"] = pageCount;

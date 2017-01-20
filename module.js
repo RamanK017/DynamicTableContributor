@@ -3,23 +3,26 @@ angular.module("ngTable", ['ngMaterial', 'md.data.table'])
 
         var ctrl = this;
             
-        ctrl.getUserData = function(pageno) {
-            console.log("pageno", pageno);
-            var promise = tableDataService.servicedata(pageno);
+        ctrl.getUserData = function(pageno,pagelimit) {
+            console.log("pageno", pageno,"limitttt",pagelimit);
+            var promise = tableDataService.servicedata(pageno,pagelimit);
             promise.then(function(userobj) {
                 ctrl.pageCount = userobj.pageCount;
                 console.log("total count", ctrl.pageCount);
                 ctrl.desserts = userobj.data;
                 console.log(ctrl.desserts);
             });
-            /*ctrl.getUserstoreData(ctrl.desserts);*/
-        }
-        /*ctrl.getUserstoreData=function(saveData)
-        {
-            console.log("gggg",ctrl.saveData);
-            ctrl.saveData=saveData;
             
-        }*/
+        }
+        
+        ctrl.searchtab=function(text)
+        {
+            console.log("search text",text);
+        }
+        ctrl.deleteuser=function(id)
+        {
+            console.log("id deleted user",id);
+        }
         
    
     });

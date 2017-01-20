@@ -3,7 +3,9 @@ angular.module('ngTable').component('customTable', {
     bindings: {
         userdata: '<',
         userinformation: '&',
-        pagecount: '@'
+        pagecount: '@',
+        searchtab: '&',
+        deleteid: '&'
 
     },
     controller: customTableCtrl,
@@ -17,39 +19,16 @@ function customTableCtrl() {
     var customTableCtrl = this;
     console.log(this);
 
-
-    customTableCtrl.deselect = function(item) {
-        console.log(item.name, 'was deselected');
-    };
-    customTableCtrl.log = function(item) {
-        console.log(item.name, 'was selected');
-    };
+    customTableCtrl.serchopentab = function() {
+        customTableCtrl.options.Search = true;
+        customTableCtrl.options.rowSelection = false;
+    }
     customTableCtrl.options = {
         rowSelection: false,
-        autoSelect: true,
-        largeEditDialog: false,
-        limitSelect: true,
-        pageSelect: true
+        pageSelect: true,
+        Search: false
     };
 
-    customTableCtrl.limitOptions = [5, 10, 15, {
-        label: 'All',
-        value: function() {
-            return customTableCtrl.userdata ? customTableCtrl.pagecount : 0;
-        }
-    }];
-
-    /* customTableCtrl.onPaginate = function(page, limit) {
-       console.log('Scope Page: ' + customTableCtrl.query.page + ' Scope Limit: ' + customTableCtrl.query.limit);
-       console.log('Page: ' + page + ' Limit: ' + limit);
-
-
-       customTableCtrl.userinformation({'pageno':customTableCtrl.query.page});
-     };*/
-
-    customTableCtrl.toggleLimitOptions = function() {
-        customTableCtrl.limitOptions = customTableCtrl.limitOptions ? undefined : [5, 10, 15];
-    };
     customTableCtrl.selected = [];
 
     customTableCtrl.query = {
@@ -58,12 +37,21 @@ function customTableCtrl() {
         page: 1
     };
 
+    customTableCtrl.callerfun = function(userdataobj) {
+        console.log(userdataobj.name);
+        customTableCtrl.username = userdataobj.name;
+    
+    }
+    customTableCtrl.userdelete = function() {
+
+        customTableCtrl.deleteid({ 'id': customTableCtrl.username });
+    }
 
     
-    customTableCtrl.userinformation({ "pageno": 1 });
-    customTableCtrl.onPaginate = function(pageno) {
+    customTableCtrl.userinformation({ "pageno": 0, 'pagelimit': 5 });
+    customTableCtrl.onPaginate = function(pageno, pagelimit) {
         console.log(pageno);
-        customTableCtrl.userinformation({ "pageno": pageno });
+        customTableCtrl.userinformation({ "pageno": pageno, 'pagelimit': pagelimit });
 
     }
 

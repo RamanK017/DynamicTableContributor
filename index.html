@@ -12,7 +12,7 @@
 
 <body layout="column" ng-controller="ngTableCtrl as parentCtrl">
     
-    <custom-table userdata="parentCtrl.desserts" userinformation="parentCtrl.getUserData(pageno)" pagecount="{{parentCtrl.pageCount}}"></custom-table>
+    <custom-table userdata="parentCtrl.desserts" userinformation="parentCtrl.getUserData(pageno,pagelimit)" pagecount="{{parentCtrl.pageCount}}" searchtab="parentCtrl.searchtab(searchtext)" deleteid="parentCtrl.deleteuser(id)"></custom-table>
 
 
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>

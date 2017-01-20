@@ -1,62 +1,68 @@
 <div class="md-whiteframe-8dp">
-<md-toolbar class="md-table-toolbar md-primary" ng-if="!customTableCtrl. options.rowSelection">
-    <div layout="row">
-        <span>Nutrition</span>
-        <span flex></span>
-        <md-button class="md-icon-button">
-            <md-icon>filter_list</md-icon>
-        </md-button>
-        <md-button class="md-icon-button">
-            <md-icon>more_vert</md-icon>
-        </md-button>
-    </div>
-</md-toolbar>
+    <md-toolbar class="md-table-toolbar md-accent" ng-if="!customTableCtrl. options.rowSelection">
+        <div layout="row">
+            <span>Nutrition</span>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="customTableCtrl.serchopentab()">
+                <md-icon>filter_list</md-icon>
+            </md-button>
+            <md-button class="md-icon-button">
+                <md-icon>more_vert</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-toolbar class="md-table-toolbar alternate" ng-if="customTableCtrl.options.rowSelection">
+        <div class="md-toolbar-tools">
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="customTableCtrl.userdelete()">
+                <md-icon>delete</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-toolbar class="md-table-toolbar alternate" ng-show="customTableCtrl.options.Search">
+        <div class="md-toolbar-tools">
+            <md-input-container>
+                <label>Search text</label>
+                <input type="text" ng-model="customTableCtrl.searchtext">
+            </md-input-container>
+            <md-button class="md-raised md-warn" ng-click="customTableCtrl.searchtab({'searchtext':customTableCtrl.searchtext})">
+                Search
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-table-container>
+        <table data-md-table data-md-row-select="customTableCtrl.options.rowSelection" data-ng-model="customTableCtrl.selected">
+            <thead md-head>
+                <tr md-row>
+                    <th>Select</th>
+                    <th md-column><span>Dessert (100g serving)</span></th>
+                    <th md-column><span>Type</span></th>
+                    <th md-column data-md-numeric><span>Calories</span></th>
+                    <th md-column data-md-numeric><span>Fat (g)</span></th>
+                    <th md-column data-md-numeric><span>Protein (g)</span></th>
+                    <th md-column data-md-numeric data-hide-sm><span>Iron (%)</span></th>
+                    <th md-column>
+                        <md-icon>comments</md-icon>
+                        <span>Comments</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row ng-repeat="x in customTableCtrl.userdata">
+                    <td>
+                        <md-checkbox ng-change="customTableCtrl.callerfun(x)" ng-model="customTableCtrl.options.rowSelection"></md-checkbox>
+                    </td>
 
-<md-toolbar class="md-table-toolbar alternate" ng-if="customTableCtrl.options.rowSelection">
-  <div class="md-toolbar-tools">
-    <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</span>
-    <span flex></span>
-    <md-button class="md-icon-button">
-      <md-icon>delete</md-icon>
-    </md-button>
-  </div>
-</md-toolbar>
-
-<md-table-container>
-    <table data-md-table data-md-row-select="customTableCtrl.options.rowSelection"  data-ng-model=" customTableCtrl.selected">
-        <thead  md-head>
-            <tr md-row>
-            <th>Select</th>
-                <th md-column md:order:by="name"><span>Dessert (100g serving)</span></th>
-                <th md-column md:order:by="type"><span>Type</span></th>
-                <th md-column data-md-numeric data-md-order-by="calories.value" data-md-desc><span>Calories</span></th>
-                <th md-column data-md-numeric data-md-order-by="fat.value"><span>Fat (g)</span></th>
-                <th md-column data-md-numeric data-md-order-by="protein.value"><span>Protein (g)</span></th>
-                <th md-column data-md-numeric data-md-order-by="iron.value" data-hide-sm><span>Iron (%)</span></th>
-                <th md-column data-md-order-by="comment">
-                    <md-icon>comments</md-icon>
-                    <span>Comments</span>
-                </th>
-            </tr>
-        </thead>
-        <tbody md-body>
-
-
-            <tr md-row ng-repeat="x in customTableCtrl.userdata" data-md-on-select="customTableCtrl.log">
-          <td md-cell><md-checkbox ng-model="customTableCtrl.options.rowSelection"></md-checkbox></td>
-                <td md-cell>{{x.name}}</td>
-                <td md-cell>{{x.type}}</td>
-                <td md-cell>{{x.calories.value}}</td>
-                <td md-cell>{{x.fat.value | number: 2}}</td>
-                <td md-cell>{{x.protein.value | number: 2}}</td>
-                <td md-cell hide-sm>{{x.iron.value}}%</td>
-            </tr>
-        </tbody>
-    </table>
-</md-table-container>
-
-<md-table-pagination md-limit="customTableCtrl.query.limit" md-limit-options="customTableCtrl.limitOptions"  md-page="customTableCtrl.query.page" md-total="{{customTableCtrl.pagecount}}" md-on-paginate="customTableCtrl.onPaginate"  md-page-select="customTableCtrl.options.pageSelect"></md-table-pagination>
-
+                    <td md-cell>{{x.name}}</td>
+                    <td md-cell>{{x.type}}</td>
+                    <td md-cell>{{x.calories.value}}</td>
+                    <td md-cell>{{x.fat.value | number: 2}}</td>
+                    <td md-cell>{{x.protein.value | number: 2}}</td>
+                    <td md-cell hide-sm>{{x.iron.value}}%</td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <md-table-pagination md-limit="customTableCtrl.query.limit" md-limit-options="[5,10,15]" md-page="customTableCtrl.query.page" md-total="{{customTableCtrl.pagecount}}" md-on-paginate="customTableCtrl.onPaginate" md-page-select="customTableCtrl.options.pageSelect"></md-table-pagination>
 </div>
 <br>
-
