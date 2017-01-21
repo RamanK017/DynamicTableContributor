@@ -11,6 +11,7 @@
     </md-toolbar>
     <md-toolbar class="md-table-toolbar alternate" ng-if="customTableCtrl.options.rowSelection">
         <div class="md-toolbar-tools">
+        <h2><span>Delete the Selected row</span></h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="customTableCtrl.seclectedRowId()">
                 <md-icon>delete</md-icon>
@@ -49,7 +50,7 @@
             <tbody md-body>
                 <tr md-row ng-repeat="x in customTableCtrl.tabledata">
                     <td>
-                        <md-checkbox ng-change="customTableCtrl.tablerow(x)" ng-model="customTableCtrl.options.rowSelection"></md-checkbox>
+                        <md-checkbox  ng-if="customTableCtrl.options.deletenavbar" ng-click="customTableCtrl.tablerow(x)"></md-checkbox>
                     </td>
                     <td md-cell ng-repeat="(key,value) in x">{{value}}</td>
                     <td>

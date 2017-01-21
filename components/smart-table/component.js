@@ -36,7 +36,8 @@ function customTableCtrl() {
     customTableCtrl.options = {
         rowSelection: false,
         pageSelect: true,
-        Search: false
+        Search: false,
+        deletenavbar:true,
     };
 
     customTableCtrl.selected = [];
@@ -48,6 +49,8 @@ function customTableCtrl() {
     };
 // tablerow is a function passing the respective id of a particular row 
     customTableCtrl.tablerow = function(tableobj) {
+        customTableCtrl.deletenavbar=true;
+        customTableCtrl.options.rowSelection = true;
         console.log(tableobj._id);
         customTableCtrl.id = tableobj._id;
     }
