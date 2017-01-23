@@ -34,35 +34,33 @@
             </div>
     </div>
     </md-toolbar>
-    <div layout="column" flex-gt-sm="auto">
-        <md-table-container layout="row">
-            <table data-md-table>
-                <thead md-head>
-                    <tr md-row>
-                        <tr md-row ng-repeat="x in customTableCtrl.tabledata" ng-if="$first">
-                            <th></th>
-                            <th md-column ng-repeat="(key,value) in x">
-                                <md-button ng-click="customTableCtrl.headervalue(key)"><span>{{key}}</span></md-button>
-                            </th>
-                            <th md-column>
-                                <md-icon>comments</md-icon>
-                                <span>Comments</span>
-                            </th>
-                        </tr>
-                </thead>
-                <tbody md-body>
-                    <tr md-row ng-repeat="x in customTableCtrl.tabledata ">
-                        <td>
-                            <md-checkbox ng-click="customTableCtrl.tablerow(x) "></md-checkbox>
-                        </td>
-                        <td md-cell ng-repeat="(key,value) in x " style="text-align:center">{{value}}</td>
-                        <td>
-                            <div ng-transclude=" rowCorner "></div>
-                        </td>
+    <md-table-container>
+        <table data-md-table>
+            <thead md-head>
+                <tr md-row>
+                    <tr md-row ng-repeat="x in customTableCtrl.tabledata" ng-if="$first">
+                        <th></th>
+                        <th md-column ng-repeat="(tableheader,customtabledata) in x">
+                            <md-button ng-click="customTableCtrl.headervalue(key)"><span>{{tableheader}}</span></md-button>
+                        </th>
+                        <th md-column>
+                            <md-icon>comments</md-icon>
+                            <span>Comments</span>
+                        </th>
                     </tr>
-                </tbody>
-            </table>
-        </md-table-container>
-        <md-table-pagination md-limit="customTableCtrl.query.limit " md-limit-options="[5,10,15] " md-page="customTableCtrl.query.page " md-total="{{customTableCtrl.pagecount}} " md-on-paginate="customTableCtrl.onPaginate " md-page-select="customTableCtrl.options.pageSelect "></md-table-pagination>
-    </div>
+            </thead>
+            <tbody md-body>
+                <tr md-row ng-repeat="tablerowdata in customTableCtrl.tabledata">
+                    <td>
+                        <md-checkbox ng-click="customTableCtrl.tablerow(tablerowdata)"></md-checkbox>
+                    </td>
+                    <td md-cell ng-repeat="(tableheader,customtabledata) in tablerowdata">{{customtabledata}}</td>
+                    <td>
+                        <div ng-transclude="rowCorner" layout-align="end end"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <md-table-pagination md-limit="customTableCtrl.query.limit" md-limit-options="[5,10,15]" md-page="customTableCtrl.query.page" md-total="{{customTableCtrl.pagecount}}" md-on-paginate="customTableCtrl.onPaginate" md-page-select="customTableCtrl.options.pageSelect"></md-table-pagination>
 </div>

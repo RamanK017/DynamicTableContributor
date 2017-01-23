@@ -46,7 +46,9 @@ function customTableCtrl() {
 
     };
 
-    customTableCtrl.selected = [];
+    customTableCtrl.selected = []; //it is used to store the table row id
+    customTableCtrl.filteredarray = []; //it is used to filtered the unselected table row and get the only selectable table row.
+
 
     customTableCtrl.query = {
         limit: 5,
@@ -56,20 +58,36 @@ function customTableCtrl() {
     customTableCtrl.tablerow = function(tableobj) {
             customTableCtrl.options.deletenavbar = true;
             customTableCtrl.options.rowSelection = true;
+
             customTableCtrl.options.Search = false;
 
 
-            console.log(tableobj._id);
-            customTableCtrl.id = tableobj._id;
+
+            customTableCtrl.selected.push(tableobj._id);
+
         }
-        //   seclectedRowId is a function passing the respective id of a particular row 
+        //seclectedRowId is a function passing the respective id of a particular row 
+
     customTableCtrl.seclectedRowId = function() {
 
         customTableCtrl.options.rowSelection = false;
 
         customTableCtrl.options.deletenavbar = false;
 
-        customTableCtrl.tablerowid({ 'id': customTableCtrl.id });
+        customTableCtrl.filteredarray.push(customTableCtrl.selected[0]); //pushing first element to the filteredarray[] array from selected[] array
+
+        for (var i = 1; i < customTableCtrl.selected.length; i++) {
+            if (customTableCtrl.selected[i] != customTableCtrl.selected[i - 1]) {
+                customTableCtrl.filteredarray.push(customTableCtrl.selected[i]);
+                //removing the redundant data from the selected[] array and pushing it to the filteredarray[].
+            } else {
+                customTableCtrl.filteredarray.pop(customTableCtrl.selected[i]);
+                //poped out the unselected tablerow from the filteredarray[].
+            }
+        }
+        console.log("filteredarray", customTableCtrl.filteredarray);
+        customTableCtrl.tablerowid({ 'id': customTableCtrl.filteredarray }); //calling the parent tablerowid() function that is binded to the component.
+
     }
 
     //tableinformation is user for first time loading the table data
