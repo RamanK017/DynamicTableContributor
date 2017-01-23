@@ -12,7 +12,7 @@
 </head>
 
 <body ng-controller="ngTableCtrl as parentCtrl">
-   <!-- custom table is the component -->
+    <!-- custom table is the component -->
     <custom-table tabledata="parentCtrl.tabledata" tableinformation="parentCtrl.tableinformation(pageno,pagelimit)" pagecount="{{parentCtrl.pageCount}}" searchinput="parentCtrl.searchinput(searchtext)" tablerowid="parentCtrl.tablerowid(id)" tableheader="parentCtrl.tableheader(key)">
         <top-corner>
             <md-button class="md-raised md-primary">TopCorner</md-button>

@@ -23,27 +23,26 @@ function customTableCtrl() {
 
     var customTableCtrl = this;
     console.log(this);
-// headervalue is a function which passed the respective header 
+    // headervalue is a function which passed the respective header 
     customTableCtrl.headervalue = function(header) {
 
-        customTableCtrl.tableheader({ 'key': header });// calling the parent tableheader() function by passing the header of table 
-    }
-// searchopentab is a function that will hide the main toolbar
+            customTableCtrl.tableheader({ 'key': header }); // calling the parent tableheader() function by passing the header of table 
+        }
+        // searchopentab is a function that will hide the main toolbar
     customTableCtrl.serchopentab = function() {
         customTableCtrl.options.Search = true;
-        customTableCtrl.options.rowSelection=true;
-       
+        customTableCtrl.options.rowSelection = true;
+
     }
-    customTableCtrl.closeSearchnavbar=function()
-    {
-          customTableCtrl.options.Search = false;
-        customTableCtrl.options.rowSelection=false;
+    customTableCtrl.closeSearchnavbar = function() {
+        customTableCtrl.options.Search = false;
+        customTableCtrl.options.rowSelection = false;
     }
     customTableCtrl.options = {
         rowSelection: false,
         pageSelect: true,
         Search: false,
-        deletenavbar:false
+        deletenavbar: false
 
     };
 
@@ -53,29 +52,30 @@ function customTableCtrl() {
         limit: 5,
         page: 1
     };
-// tablerow is a function passing the respective id of a particular row 
+    // tablerow is a function passing the respective id of a particular row 
     customTableCtrl.tablerow = function(tableobj) {
-        customTableCtrl.options.deletenavbar=true;
-        customTableCtrl.options.rowSelection = true;
-      
-       
-        console.log(tableobj._id);
-        customTableCtrl.id = tableobj._id;
-    }
- //   seclectedRowId is a function passing the respective id of a particular row 
+            customTableCtrl.options.deletenavbar = true;
+            customTableCtrl.options.rowSelection = true;
+            customTableCtrl.options.Search = false;
+
+
+            console.log(tableobj._id);
+            customTableCtrl.id = tableobj._id;
+        }
+        //   seclectedRowId is a function passing the respective id of a particular row 
     customTableCtrl.seclectedRowId = function() {
-         
-      customTableCtrl.options.rowSelection=false;
-      
-      customTableCtrl.options.deletenavbar=false;
-      
+
+        customTableCtrl.options.rowSelection = false;
+
+        customTableCtrl.options.deletenavbar = false;
+
         customTableCtrl.tablerowid({ 'id': customTableCtrl.id });
     }
 
-//tableinformation is user for first time loading the table data
+    //tableinformation is user for first time loading the table data
     customTableCtrl.tableinformation({ "pageno": 0, 'pagelimit': 5 });
     customTableCtrl.onPaginate = function(pageno, pagelimit) {
-//onPaginate is a function that iterate on the no of pages as well as calling the parent tableinformation function  
+        //onPaginate is a function that iterate on the no of pages as well as calling the parent tableinformation function  
         customTableCtrl.tableinformation({ "pageno": pageno, 'pagelimit': pagelimit });
 
     }
