@@ -38,8 +38,8 @@
                 <tr md-row>
                     <tr md-row ng-repeat="x in customTableCtrl.tabledata" ng-if="$first">
                         <th></th>
-                        <th md-column ng-repeat="(key,value) in x">
-                            <md-button ng-click="customTableCtrl.headervalue(key)"><span>{{key}}</span></md-button>
+                        <th md-column ng-repeat="(tableheader,customtabledata) in x">
+                            <md-button ng-click="customTableCtrl.headervalue(key)"><span>{{tableheader}}</span></md-button>
                         </th>
                         <th md-column>
                             <md-icon>comments</md-icon>
@@ -48,12 +48,12 @@
                     </tr>
             </thead>
             <tbody md-body>
-                <tr md-row ng-repeat="x in customTableCtrl.tabledata">
+                <tr md-row ng-repeat="tablerowdata in customTableCtrl.tabledata">
                     <td>
-                        <md-checkbox  ng-click="customTableCtrl.tablerow(x)"></md-checkbox>
+                        <md-checkbox  ng-click="customTableCtrl.tablerow(tablerowdata)"></md-checkbox>
 
                     </td>
-                    <td md-cell ng-repeat="(key,value) in x">{{value}}</td>
+                    <td md-cell ng-repeat="(tableheader,customtabledata) in tablerowdata">{{customtabledata}}</td>
                     <td>
                         <div ng-transclude="rowCorner" layout-align="end end"></div>
                     </td>

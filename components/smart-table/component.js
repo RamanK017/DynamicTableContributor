@@ -46,8 +46,8 @@ function customTableCtrl() {
 
     };
 
-    customTableCtrl.selected = [];
-    customTableCtrl.unselected = [];
+    customTableCtrl.selected = [];//it is used to store the table row id
+    customTableCtrl.filteredarray = [];//it is used to filtered the unselected table row and get the only selectable table row.
 
 
     customTableCtrl.query = {
@@ -58,8 +58,6 @@ function customTableCtrl() {
     customTableCtrl.tablerow = function(tableobj) {
             customTableCtrl.options.deletenavbar = true;
             customTableCtrl.options.rowSelection = true;
-
-
             customTableCtrl.selected.push(tableobj._id);
 
         }
@@ -69,17 +67,19 @@ function customTableCtrl() {
         customTableCtrl.options.rowSelection = false;
 
         customTableCtrl.options.deletenavbar = false;
-        customTableCtrl.unselected.push(customTableCtrl.selected[0]);
+        customTableCtrl.filteredarray.push(customTableCtrl.selected[0]);//pushing first element to the filteredarray[] array from selected[] array
 
         for (var i = 1; i < customTableCtrl.selected.length; i++) {
             if (customTableCtrl.selected[i] != customTableCtrl.selected[i - 1]) {
-                customTableCtrl.unselected.push(customTableCtrl.selected[i]);
+                customTableCtrl.filteredarray.push(customTableCtrl.selected[i]);
+                //removing the redundant data from the selected[] array and pushing it to the filteredarray[].
             } else {
-                customTableCtrl.unselected.pop(customTableCtrl.selected[i]);
+                customTableCtrl.filteredarray.pop(customTableCtrl.selected[i]);
+                //poped out the unselected tablerow from the filteredarray[].
             }
         }
-        console.log("unselected", customTableCtrl.unselected);
-        customTableCtrl.tablerowid({ 'id': customTableCtrl.unselected });
+        console.log("filteredarray", customTableCtrl.filteredarray);
+        customTableCtrl.tablerowid({ 'id': customTableCtrl.filteredarray });//calling the parent tablerowid() function that is binded to the component.
     }
 
     //tableinformation is user for first time loading the table data
