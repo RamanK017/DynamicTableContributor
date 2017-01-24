@@ -1,4 +1,4 @@
-<div class="md-whiteframe-8dp">
+<div class="md-whiteframe-8dp" >
     <md-toolbar class="md-table-toolbar md-accent" ng-if="!customTableCtrl. options.rowSelection">
         <div layout="row">
             <h3><span>Custom Data Table</span></h3>
@@ -34,12 +34,15 @@
     </md-toolbar>
     <md-table-container>
         <table data-md-table data-md-row-select="customTableCtrl.options.rowSelection" data-ng-model="customTableCtrl.selected" layout-wrap>
-            <thead md-head>
+        <thead md-head>
+            
                 <tr md-row>
                     <tr md-row ng-repeat="x in customTableCtrl.tabledata" ng-if="$first">
                         <th></th>
                         <th md-column ng-repeat="(key,value) in x">
                             <md-button ng-click="customTableCtrl.headervalue(key)"><span>{{key}}</span></md-button>
+                            <md-icon class="material-icons" ng-if="customTableCtrl.sortflags[key].ascending===true">arrow_downward</md-icon>
+                            <md-icon class="material-icons" ng-if="customTableCtrl.sortflags[key].descending===true">arrow_upward</md-icon>
                         </th>
                         <th md-column>
                             <md-icon>comments</md-icon>
@@ -60,6 +63,6 @@
             </tbody>
         </table>
     </md-table-container>
-    <md-table-pagination md-limit="customTableCtrl.query.limit" md-limit-options="[5,10,15]" md-page="customTableCtrl.query.page" md-total="{{customTableCtrl.pagecount}}" md-on-paginate="customTableCtrl.onPaginate" md-page-select="customTableCtrl.options.pageSelect"></md-table-pagination>
+    <md-table-pagination md-limit="customTableCtrl.query.limit" md-limit-options="[5,10,15]" md-pbalance="customTableCtrl.query.pbalance" md-total="{{customTableCtrl.pbalancecount}}" md-on-paginate="customTableCtrl.onPaginate" md-pbalance-select="customTableCtrl.options.pbalanceSelect"></md-table-pagination>
 </div>
 <br>
