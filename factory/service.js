@@ -2,8 +2,9 @@ angular.module('ngTable').factory('tableDataService', function($http, $q) //decl
     {
         var servicectrl = this;
         var factoryobj = {};//It is an object which is used to store the function servicedata
-        
+         
         factoryobj.servicedata = function(pageno,pagelimit) {
+
             var deferred = $q.defer();//creating the instance of promise variable
             //calling the api 'http://localhost:3000/data' to get the Json data.
             $http.get("http://localhost:3000/data?_start="+(pageno*pagelimit)+"&_end="+((pageno*pagelimit)+pagelimit)).then(function(response) {

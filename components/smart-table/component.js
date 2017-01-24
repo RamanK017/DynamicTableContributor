@@ -60,9 +60,6 @@ function customTableCtrl() {
             customTableCtrl.options.rowSelection = true;
 
             customTableCtrl.options.Search = false;
-
-
-
             customTableCtrl.selected.push(tableobj._id);
 
         }
@@ -79,13 +76,14 @@ function customTableCtrl() {
         for (var i = 1; i < customTableCtrl.selected.length; i++) {
             if (customTableCtrl.selected[i] != customTableCtrl.selected[i - 1]) {
                 customTableCtrl.filteredarray.push(customTableCtrl.selected[i]);
-                //removing the redundant data from the selected[] array and pushing it to the filteredarray[].
+                //Extracting the unique table rowID from the selected[] array and pushing it to the filteredarray[].
             } else {
                 customTableCtrl.filteredarray.pop(customTableCtrl.selected[i]);
                 //poped out the unselected tablerow from the filteredarray[].
             }
         }
         console.log("filteredarray", customTableCtrl.filteredarray);
+
         customTableCtrl.tablerowid({ 'id': customTableCtrl.filteredarray }); //calling the parent tablerowid() function that is binded to the component.
 
     }
@@ -93,8 +91,9 @@ function customTableCtrl() {
     //tableinformation is user for first time loading the table data
     customTableCtrl.tableinformation({ "pageno": 0, 'pagelimit': 5 });
     customTableCtrl.onPaginate = function(pageno, pagelimit) {
+        var pageno=pageno-1;
         //onPaginate is a function that iterate on the no of pages as well as calling the parent tableinformation function  
-        customTableCtrl.tableinformation({ "pageno": pageno, 'pagelimit': pagelimit });
+    customTableCtrl.tableinformation({ "pageno": pageno, 'pagelimit': pagelimit });
 
     }
 
