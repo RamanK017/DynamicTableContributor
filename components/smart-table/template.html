@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 <div class="md-whiteframe-8dp" >
+=======
+<div class="md-whiteframe-8dp" flex-gt-sm="auto" flex-sm="auto">
+>>>>>>> 8badb08d22345b329dd4235f2b1ac2ecfb6d53a6
     <md-toolbar class="md-table-toolbar md-accent" ng-if="!customTableCtrl. options.rowSelection">
         <div layout="row">
-            <h3><span>Custom Data Table</span></h3>
+            <!-- <h3><span>Custom Data Table</span></h3> -->
             <span flex></span>
             <md-button class="md-icon-button" ng-click="customTableCtrl.serchopentab()">
                 <md-icon>filter_list</md-icon>
@@ -9,28 +13,30 @@
             <div ng-transclude="topCorner" layout-align="end end"></div>
         </div>
     </md-toolbar>
-    <md-toolbar class="md-table-toolbar alternate" ng-if="customTableCtrl.options.rowSelection">
+    <md-toolbar class="md-table-toolbar md-accent" ng-if="customTableCtrl.options.deletenavbar">
         <div class="md-toolbar-tools">
-        <h2><span>Delete the Selected row</span></h2>
+            <h2><span>Delete the Selected row</span></h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="customTableCtrl.seclectedRowId()">
                 <md-icon>delete</md-icon>
             </md-button>
         </div>
     </md-toolbar>
-    <md-toolbar class="md-table-toolbar alternate" ng-show="customTableCtrl.options.Search">
-        <div class="md-toolbar-tools">
-            <md-input-container>
-                <label>Search text</label>
-                <input type="text" ng-model="customTableCtrl.searchtext">
-            </md-input-container>
-            <md-button class="md-raised md-fab md-mini" ng-click="customTableCtrl.searchinput({'searchtext':customTableCtrl.searchtext})">
-                <md-icon>search</md-icon>
-            </md-button>
-            <md-button class="md-raised md-fab md-mini" ng-click="customTableCtrl.options.Search=false">
-                <md-icon>close</md-icon>
-            </md-button>
-        </div>
+    <div layout="row" flex>
+        <md-toolbar class="md-table-toolbar md-accent" ng-show="customTableCtrl.options.Search">
+            <div class="md-toolbar-tools">
+                <md-input-container layout="row" flex>
+                    <label>Search text</label>
+                    <input type="text" ng-model="customTableCtrl.searchtext">
+                </md-input-container>
+                <md-button layout-align="end center" class="md-raised md-fab md-mini" ng-click="customTableCtrl.searchinput({'searchtext':customTableCtrl.searchtext})">
+                    <md-icon>search</md-icon>
+                </md-button>
+                <md-button layout-align="end center" class="md-raised md-fab md-mini" ng-click="customTableCtrl.closeSearchnavbar()">
+                    <md-icon>close</md-icon>
+                </md-button>
+            </div>
+    </div>
     </md-toolbar>
     <md-table-container>
         <table data-md-table data-md-row-select="customTableCtrl.options.rowSelection" data-ng-model="customTableCtrl.selected" layout-wrap>
@@ -51,11 +57,11 @@
                     </tr>
             </thead>
             <tbody md-body>
-                <tr md-row ng-repeat="x in customTableCtrl.tabledata">
+                <tr md-row ng-repeat="tablerowdata in customTableCtrl.tabledata">
                     <td>
-                        <md-checkbox  ng-if="customTableCtrl.options.deletenavbar" ng-click="customTableCtrl.tablerow(x)"></md-checkbox>
+                        <md-checkbox ng-click="customTableCtrl.tablerow(tablerowdata)"></md-checkbox>
                     </td>
-                    <td md-cell ng-repeat="(key,value) in x">{{value}}</td>
+                    <td md-cell ng-repeat="(tableheader,customtabledata) in tablerowdata">{{customtabledata}}</td>
                     <td>
                         <div ng-transclude="rowCorner" layout-align="end end"></div>
                     </td>

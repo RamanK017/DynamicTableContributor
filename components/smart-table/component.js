@@ -56,45 +56,90 @@ function customTableCtrl() {
 
             customTableCtrl.tableheader({ 'key': header, 'sortOrder': sortOrder}); // calling the parent tableheader() function by passing the header of table 
 
-
-        }
         // searchopentab is a function that will hide the main toolbar
     customTableCtrl.serchopentab = function() {
         customTableCtrl.options.Search = true;
+        customTableCtrl.options.rowSelection = true;
+
+    }
+    customTableCtrl.closeSearchnavbar = function() {
+        customTableCtrl.options.Search = false;
         customTableCtrl.options.rowSelection = false;
     }
     customTableCtrl.options = {
         rowSelection: false,
         pageSelect: true,
         Search: false,
+<<<<<<< HEAD
         deletenavbar: true,
+=======
+        deletenavbar: false
+
+>>>>>>> 8badb08d22345b329dd4235f2b1ac2ecfb6d53a6
     };
 
-    customTableCtrl.selected = [];
+    customTableCtrl.selected = []; //it is used to store the table row id
+    customTableCtrl.filteredarray = []; //it is used to filtered the unselected table row and get the only selectable table row.
+
 
     customTableCtrl.query = {
-        order: 'name',
         limit: 5,
         page: 1
     };
     // tablerow is a function passing the respective id of a particular row 
     customTableCtrl.tablerow = function(tableobj) {
+<<<<<<< HEAD
             customTableCtrl.deletenavbar = true;
             customTableCtrl.options.rowSelection = true;
             console.log(tableobj._id);
             customTableCtrl.id = tableobj._id;
         }
         //   seclectedRowId is a function passing the respective id of a particular row 
+=======
+            customTableCtrl.options.deletenavbar = true;
+            customTableCtrl.options.rowSelection = true;
+
+            customTableCtrl.options.Search = false;
+            customTableCtrl.selected.push(tableobj._id);
+
+        }
+        //seclectedRowId is a function passing the respective id of a particular row 
+
+>>>>>>> 8badb08d22345b329dd4235f2b1ac2ecfb6d53a6
     customTableCtrl.seclectedRowId = function() {
 
-        customTableCtrl.tablerowid({ 'id': customTableCtrl.id });
+        customTableCtrl.options.rowSelection = false;
+
+        customTableCtrl.options.deletenavbar = false;
+
+        customTableCtrl.filteredarray.push(customTableCtrl.selected[0]); //pushing first element to the filteredarray[] array from selected[] array
+
+        for (var i = 1; i < customTableCtrl.selected.length; i++) {
+            if (customTableCtrl.selected[i] != customTableCtrl.selected[i - 1]) {
+                customTableCtrl.filteredarray.push(customTableCtrl.selected[i]);
+                //Extracting the unique table rowID from the selected[] array and pushing it to the filteredarray[].
+            } else {
+                customTableCtrl.filteredarray.pop(customTableCtrl.selected[i]);
+                //poped out the unselected tablerow from the filteredarray[].
+            }
+        }
+        console.log("filteredarray", customTableCtrl.filteredarray);
+
+        customTableCtrl.tablerowid({ 'id': customTableCtrl.filteredarray }); //calling the parent tablerowid() function that is binded to the component.
+
     }
 
     //tableinformation is user for first time loading the table data
     customTableCtrl.tableinformation({ "pageno": 0, 'pagelimit': 5 });
     customTableCtrl.onPaginate = function(pageno, pagelimit) {
+<<<<<<< HEAD
         //onPaginate is a function that iterate on the no of pages as well as calling the parent tableinformation function  
         customTableCtrl.tableinformation({ "pageno": pageno, 'pagelimit': pagelimit });
+=======
+        var pageno=pageno-1;
+        //onPaginate is a function that iterate on the no of pages as well as calling the parent tableinformation function  
+    customTableCtrl.tableinformation({ "pageno": pageno, 'pagelimit': pagelimit });
+>>>>>>> 8badb08d22345b329dd4235f2b1ac2ecfb6d53a6
 
     }
 
