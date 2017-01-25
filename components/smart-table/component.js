@@ -5,13 +5,13 @@ angular.module('ngTable').component('customTable', {
         rowCorner: 'rowCorner'
     },
     bindings: {
-        tabledata: '<',
-        tableinformation: '&',
-        pagecount: '@',
-        searchinput: '&',
-        tablerowid: '&',
-        tableheader: '&',
-        sortflags: '<'
+        tableData: '<',
+        sendTableNavigationInfo: '&getTableNavigationInfo',
+        pageCount: '@',
+        sendSearchInput: '&getSearchInput',
+        sendRowIdOnDeletion: '&getRowIdOnDeletion',
+        sendSortData: '&getSortData',
+        sortFlags: '<'
 
     },
     controller: customTableCtrl,
@@ -24,32 +24,32 @@ function customTableCtrl() {
     console.log(this);
 
     customTableCtrl.sortFields = function() {
-            console.log("sortField function is called", customTableCtrl.sortflags);
+            console.log("sortField function is called", customTableCtrl.sortFlags);
         }
         // headervalue is a function which passed the respective header 
     customTableCtrl.headervalue = function(header) {
             var sortOrder;
-            if (customTableCtrl.sortflags[header].ascending === false && customTableCtrl.sortflags[header].descending === false) {
-                customTableCtrl.sortflags[header].ascending = true;
+            if (customTableCtrl.sortFlags[header].ascending === false && customTableCtrl.sortFlags[header].descending === false) {
+                customTableCtrl.sortFlags[header].ascending = true;
                 sortOrder = "ascending";
             } else {
 
-                customTableCtrl.sortflags[header].ascending = !customTableCtrl.sortflags[header].ascending;
-                customTableCtrl.sortflags[header].descending = !customTableCtrl.sortflags[header].descending;
-                if (customTableCtrl.sortflags[header].ascending === true) {
+                customTableCtrl.sortFlags[header].ascending = !customTableCtrl.sortFlags[header].ascending;
+                customTableCtrl.sortFlags[header].descending = !customTableCtrl.sortFlags[header].descending;
+                if (customTableCtrl.sortFlags[header].ascending === true) {
                     sortOrder = "ascending";
                 } else {
                     sortOrder = "descending";
                 }
             }
             if (customTableCtrl.currentSortHeader !== undefined && customTableCtrl.currentSortHeader !== header) {
-                customTableCtrl.sortflags[customTableCtrl.currentSortHeader].ascending = false;
-                customTableCtrl.sortflags[customTableCtrl.currentSortHeader].descending = false;
+                customTableCtrl.sortFlags[customTableCtrl.currentSortHeader].ascending = false;
+                customTableCtrl.sortFlags[customTableCtrl.currentSortHeader].descending = false;
 
             }
             customTableCtrl.currentSortHeader = header;
 
-            customTableCtrl.tableheader({ 'key': header, 'sortOrder': sortOrder }); // calling the parent tableheader() function by passing the header of table 
+            customTableCtrl.sendSortData({ 'key': header, 'sortOrder': sortOrder }); // calling the parent sendSortData() function by passing the header of table 
         }
         // searchopentab is a function that will hide the main toolbar
     customTableCtrl.serchopentab = function() {
@@ -105,18 +105,18 @@ function customTableCtrl() {
         }
         console.log("filteredarray", customTableCtrl.filteredarray);
 
-        customTableCtrl.tablerowid({ 'id': customTableCtrl.filteredarray }); //calling the parent tablerowid() function that is binded to the component.
+        customTableCtrl.sendRowIdOnDeletion({ 'id': customTableCtrl.filteredarray }); //calling the parent sendRowIdOnDeletion() function that is binded to the component.
 
     }
 
-    //tableinformation is user for first time loading the table data
-    customTableCtrl.tableinformation({ "pageno": 0, 'pagelimit': 5 });
+    //sendTableNavigationInfo is user for first time loading the table data
+    customTableCtrl.sendTableNavigationInfo({ "pageno": 0, 'pagelimit': 5 });
     customTableCtrl.onPaginate = function(pageno, pagelimit) {
-        //onPaginate is a function that iterate on the no of pages as well as calling the parent tableinformation function  
+        //onPaginate is a function that iterate on the no of pages as well as calling the parent sendTableNavigationInfo function  
 
         var pageno = pageno - 1;
-        //onPaginate is a function that iterate on the no of pages as well as calling the parent tableinformation function  
-        customTableCtrl.tableinformation({ "pageno": pageno, 'pagelimit': pagelimit });
+        //onPaginate is a function that iterate on the no of pages as well as calling the parent sendTableNavigationInfo function  
+        customTableCtrl.sendTableNavigationInfo({ "pageno": pageno, 'pagelimit': pagelimit });
 
     }
 

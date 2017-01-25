@@ -24,7 +24,7 @@
                     <label>Search text</label>
                     <input type="text" ng-model="customTableCtrl.searchtext">
                 </md-input-container>
-                <md-button layout-align="end center" class="md-raised md-fab md-mini" ng-click="customTableCtrl.searchinput({'searchtext':customTableCtrl.searchtext})">
+                <md-button layout-align="end center" class="md-raised md-fab md-mini" ng-click="customTableCtrl.sendSearchInput({'searchtext':customTableCtrl.searchtext})">
                     <md-icon>search</md-icon>
                 </md-button>
                 <md-button layout-align="end center" class="md-raised md-fab md-mini" ng-click="customTableCtrl.closeSearchnavbar()">
@@ -37,12 +37,12 @@
         <table data-md-table>
         <thead md-head>
                 <tr md-row>
-                    <tr md-row ng-repeat="x in customTableCtrl.tabledata" ng-if="$first">
+                    <tr md-row ng-repeat="x in customTableCtrl.tableData" ng-if="$first">
                         <th></th>
                         <th md-column ng-repeat="(key,value) in x">
                             <md-button ng-click="customTableCtrl.headervalue(key)"><span>{{key}}</span></md-button>
-                            <md-icon class="material-icons" ng-if="customTableCtrl.sortflags[key].ascending===true">arrow_downward</md-icon>
-                            <md-icon class="material-icons" ng-if="customTableCtrl.sortflags[key].descending===true">arrow_upward</md-icon>
+                            <md-icon class="material-icons" ng-if="customTableCtrl.sortFlags[key].ascending===true">arrow_downward</md-icon>
+                            <md-icon class="material-icons" ng-if="customTableCtrl.sortFlags[key].descending===true">arrow_upward</md-icon>
                         </th>
                         <th md-column>
                             <md-icon>comments</md-icon>
@@ -51,7 +51,7 @@
                     </tr>
             </thead>
             <tbody md-body>
-                <tr md-row ng-repeat="tablerowdata in customTableCtrl.tabledata">
+                <tr md-row ng-repeat="tablerowdata in customTableCtrl.tableData">
                     <td>
                         <md-checkbox ng-click="customTableCtrl.tablerow(tablerowdata)"></md-checkbox>
                     </td>

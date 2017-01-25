@@ -14,7 +14,7 @@
 
 <body ng-controller="ngTableCtrl as parentCtrl">
     <!-- custom table is the component -->
-    <custom-table tabledata="parentCtrl.tabledata" tableinformation="parentCtrl.tableinformation(pageno,pagelimit)" pagecount="{{parentCtrl.pageCount}}" searchinput="parentCtrl.searchinput(searchtext)" tablerowid="parentCtrl.tablerowid(id)" tableheader="parentCtrl.tableheader(key,sortOrder)" sortflags="parentCtrl.fieldSortFlags">
+    <custom-table table-data="parentCtrl.tabledata" get-table-navigation-info="parentCtrl.tableinformation(pageno,pagelimit)" pageCount="{{parentCtrl.pageCount}}" get-search-input="parentCtrl.searchinput(searchtext)" get-row-id-on-deletion="parentCtrl.tablerowid(id)" get-sort-data="parentCtrl.tableheader(key,sortOrder)" sort-flags="parentCtrl.fieldSortFlags">
         <top-corner>
             <md-button class="md-raised md-primary">TopCorner</md-button>
         </top-corner>
