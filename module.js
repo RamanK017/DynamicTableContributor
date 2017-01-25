@@ -12,7 +12,7 @@ angular.module("ngTable", ['ngMaterial', 'md.data.table'])
                     ngTablectrl.fieldSortFlags[key] = { "ascending": false, "descending": false }
 
                 }
-                console.log("Inside parent ctrl CallFUnction",ngTablectrl.fieldSortFlags);
+                console.log("Inside parent ctrl CallFUnction", ngTablectrl.fieldSortFlags);
 
             }
             //table information is a function which will fetch table data from service tableDataService
@@ -24,7 +24,7 @@ angular.module("ngTable", ['ngMaterial', 'md.data.table'])
                     console.log("total count", ngTablectrl.pageCount);
                     ngTablectrl.tabledata = userobj.data;
                     ngTablectrl.callFunc();
-                    console.log("Inside Parent Ctrl tableinformation function",ngTablectrl.tabledata);
+                    console.log("Inside Parent Ctrl tableinformation function", ngTablectrl.tabledata);
                 });
 
             }
@@ -37,12 +37,10 @@ angular.module("ngTable", ['ngMaterial', 'md.data.table'])
                 console.log("id deleted user", id);
             }
             //tableheader is a function called from the child component which  will get the header value of the selected column in table.
-        ngTablectrl.tableheader = function(key,sortOrder) {
+        ngTablectrl.tableheader = function(key, sortOrder) {
             console.log("in parentctrl header", key);
             console.log("in parentctrl sortOrder", sortOrder);
 
-
         }
-
 
     });

@@ -16,8 +16,6 @@ angular.module('ngTable').component('customTable', {
     },
     controller: customTableCtrl,
     controllerAs: 'customTableCtrl'
-
-
 });
 
 function customTableCtrl() {
@@ -25,37 +23,34 @@ function customTableCtrl() {
     var customTableCtrl = this;
     console.log(this);
 
-    customTableCtrl.sortFields=function(){
-        console.log("sortField function is called",customTableCtrl.sortflags);
-    }
-    // headervalue is a function which passed the respective header 
+    customTableCtrl.sortFields = function() {
+            console.log("sortField function is called", customTableCtrl.sortflags);
+        }
+        // headervalue is a function which passed the respective header 
     customTableCtrl.headervalue = function(header) {
             var sortOrder;
-            if(customTableCtrl.sortflags[header].ascending===false && customTableCtrl.sortflags[header].descending===false)
-            {
-                customTableCtrl.sortflags[header].ascending=true;
-                sortOrder="ascending";
-            }
-            else {
+            if (customTableCtrl.sortflags[header].ascending === false && customTableCtrl.sortflags[header].descending === false) {
+                customTableCtrl.sortflags[header].ascending = true;
+                sortOrder = "ascending";
+            } else {
 
-                customTableCtrl.sortflags[header].ascending=!customTableCtrl.sortflags[header].ascending;
-                customTableCtrl.sortflags[header].descending=!customTableCtrl.sortflags[header].descending;
-                if(customTableCtrl.sortflags[header].ascending === true){
-                    sortOrder="ascending";
-                }
-                else{
-                    sortOrder="descending";
+                customTableCtrl.sortflags[header].ascending = !customTableCtrl.sortflags[header].ascending;
+                customTableCtrl.sortflags[header].descending = !customTableCtrl.sortflags[header].descending;
+                if (customTableCtrl.sortflags[header].ascending === true) {
+                    sortOrder = "ascending";
+                } else {
+                    sortOrder = "descending";
                 }
             }
-            if(customTableCtrl.currentSortHeader !== undefined && customTableCtrl.currentSortHeader !== header ){
-                customTableCtrl.sortflags[customTableCtrl.currentSortHeader].ascending=false;
-                customTableCtrl.sortflags[customTableCtrl.currentSortHeader].descending=false;
+            if (customTableCtrl.currentSortHeader !== undefined && customTableCtrl.currentSortHeader !== header) {
+                customTableCtrl.sortflags[customTableCtrl.currentSortHeader].ascending = false;
+                customTableCtrl.sortflags[customTableCtrl.currentSortHeader].descending = false;
 
             }
-            customTableCtrl.currentSortHeader=header;
+            customTableCtrl.currentSortHeader = header;
 
-            customTableCtrl.tableheader({ 'key': header, 'sortOrder': sortOrder}); // calling the parent tableheader() function by passing the header of table 
-
+            customTableCtrl.tableheader({ 'key': header, 'sortOrder': sortOrder }); // calling the parent tableheader() function by passing the header of table 
+        }
         // searchopentab is a function that will hide the main toolbar
     customTableCtrl.serchopentab = function() {
         customTableCtrl.options.Search = true;
@@ -70,12 +65,7 @@ function customTableCtrl() {
         rowSelection: false,
         pageSelect: true,
         Search: false,
-<<<<<<< HEAD
-        deletenavbar: true,
-=======
         deletenavbar: false
-
->>>>>>> 8badb08d22345b329dd4235f2b1ac2ecfb6d53a6
     };
 
     customTableCtrl.selected = []; //it is used to store the table row id
@@ -88,24 +78,14 @@ function customTableCtrl() {
     };
     // tablerow is a function passing the respective id of a particular row 
     customTableCtrl.tablerow = function(tableobj) {
-<<<<<<< HEAD
-            customTableCtrl.deletenavbar = true;
-            customTableCtrl.options.rowSelection = true;
-            console.log(tableobj._id);
-            customTableCtrl.id = tableobj._id;
-        }
-        //   seclectedRowId is a function passing the respective id of a particular row 
-=======
             customTableCtrl.options.deletenavbar = true;
             customTableCtrl.options.rowSelection = true;
-
             customTableCtrl.options.Search = false;
             customTableCtrl.selected.push(tableobj._id);
 
         }
         //seclectedRowId is a function passing the respective id of a particular row 
 
->>>>>>> 8badb08d22345b329dd4235f2b1ac2ecfb6d53a6
     customTableCtrl.seclectedRowId = function() {
 
         customTableCtrl.options.rowSelection = false;
@@ -132,14 +112,11 @@ function customTableCtrl() {
     //tableinformation is user for first time loading the table data
     customTableCtrl.tableinformation({ "pageno": 0, 'pagelimit': 5 });
     customTableCtrl.onPaginate = function(pageno, pagelimit) {
-<<<<<<< HEAD
+        //onPaginate is a function that iterate on the no of pages as well as calling the parent tableinformation function  
+
+        var pageno = pageno - 1;
         //onPaginate is a function that iterate on the no of pages as well as calling the parent tableinformation function  
         customTableCtrl.tableinformation({ "pageno": pageno, 'pagelimit': pagelimit });
-=======
-        var pageno=pageno-1;
-        //onPaginate is a function that iterate on the no of pages as well as calling the parent tableinformation function  
-    customTableCtrl.tableinformation({ "pageno": pageno, 'pagelimit': pagelimit });
->>>>>>> 8badb08d22345b329dd4235f2b1ac2ecfb6d53a6
 
     }
 

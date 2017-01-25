@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-<div class="md-whiteframe-8dp" >
-=======
 <div class="md-whiteframe-8dp" flex-gt-sm="auto" flex-sm="auto">
->>>>>>> 8badb08d22345b329dd4235f2b1ac2ecfb6d53a6
     <md-toolbar class="md-table-toolbar md-accent" ng-if="!customTableCtrl. options.rowSelection">
         <div layout="row">
-            <!-- <h3><span>Custom Data Table</span></h3> -->
             <span flex></span>
             <md-button class="md-icon-button" ng-click="customTableCtrl.serchopentab()">
                 <md-icon>filter_list</md-icon>
@@ -39,9 +34,8 @@
     </div>
     </md-toolbar>
     <md-table-container>
-        <table data-md-table data-md-row-select="customTableCtrl.options.rowSelection" data-ng-model="customTableCtrl.selected" layout-wrap>
+        <table data-md-table>
         <thead md-head>
-            
                 <tr md-row>
                     <tr md-row ng-repeat="x in customTableCtrl.tabledata" ng-if="$first">
                         <th></th>
@@ -61,7 +55,7 @@
                     <td>
                         <md-checkbox ng-click="customTableCtrl.tablerow(tablerowdata)"></md-checkbox>
                     </td>
-                    <td md-cell ng-repeat="(tableheader,customtabledata) in tablerowdata">{{customtabledata}}</td>
+                    <td md-cell ng-repeat="(key,value) in tablerowdata">{{value}}</td>
                     <td>
                         <div ng-transclude="rowCorner" layout-align="end end"></div>
                     </td>

@@ -8,14 +8,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- style sheet -->
     <link href="bower_components/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css" />
-
     <!-- module -->
     <title>Dynamic Table</title>
 </head>
 
-
-<body  ng-controller="ngTableCtrl as parentCtrl">
-   <!-- custom table is the component -->
+<body ng-controller="ngTableCtrl as parentCtrl">
+    <!-- custom table is the component -->
     <custom-table tabledata="parentCtrl.tabledata" tableinformation="parentCtrl.tableinformation(pageno,pagelimit)" pagecount="{{parentCtrl.pageCount}}" searchinput="parentCtrl.searchinput(searchtext)" tablerowid="parentCtrl.tablerowid(id)" tableheader="parentCtrl.tableheader(key,sortOrder)" sortflags="parentCtrl.fieldSortFlags">
         <top-corner>
             <md-button class="md-raised md-primary">TopCorner</md-button>
